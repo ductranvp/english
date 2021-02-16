@@ -1,9 +1,11 @@
 <template>
-  <div>Home</div>
+  <p>Option</p>
 </template>
 
 <script>
 export default {
-  name: "Home"
+  name: "Option"
 };
 </script>
+
+<style scoped></style>

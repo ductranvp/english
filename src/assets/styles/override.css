@@ -1,0 +1,40 @@
+.el-drawer__body{
+    overflow: auto !important;
+}
+
+.el-container, .el-main {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+}
+
+.el-header, .el-footer{
+    padding: 0.75rem
+}
+
+button:focus {
+    outline: none;
+}
+
+/* tailwind make svg display: block => loading is not centered */
+.el-loading-spinner .circular {
+    display: unset;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+.el-tooltip__popper {
+    line-height: 1.25rem;
+}
+.el-alert__content {
+    width: 100%;
+}
+.el-alert .el-alert__description {
+    margin:0;
+}
+
+.el-card__body {
+    padding: 0.5rem;
+}
