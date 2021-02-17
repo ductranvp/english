@@ -8,6 +8,7 @@
       :size="tableSize"
       :default-sort="defaultSort"
       :fit="true"
+      :row-class-name="rowClass"
     >
       <slot name="expand">
         <!-- action definitions here -->
@@ -17,7 +18,8 @@
         v-if="showIndex"
         type="index"
         :index="indexMethod"
-        label="No."
+        width="36px"
+        label="TT"
       >
       </el-table-column>
 
@@ -44,7 +46,7 @@
         :page-sizes="tableConfig.pageSizes"
         :page-size="tableConfig.pageSize"
         :total="data.length"
-        layout="total, sizes, prev, pager, next, jumper"
+        layout="total, prev, pager, next"
       />
     </el-row>
   </div>
@@ -74,7 +76,8 @@ export default {
       default: function() {
         return { prop: "date", order: "descending" };
       }
-    }
+    },
+    rowClass: [String, Function]
   },
   created() {
     this.renderTable();
@@ -130,4 +133,12 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
+}
+</style>

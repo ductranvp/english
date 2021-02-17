@@ -8,6 +8,7 @@ import { Speed } from "@/constants/app.constants";
 
 const learnMethods = {
   saveLearnedSentences(sentenceIds) {
+    console.log(sentenceIds);
     this.learnedSentences = this.learnedSentences.concat(sentenceIds);
     this.learnedSentences = [...new Set(this.learnedSentences)];
     setLocalStorage(StorageKey.LEARNED_SENTENCES, this.learnedSentences);
@@ -42,9 +43,7 @@ const learnMethods = {
       temp.status = SessionStatus.COMPLETED;
       this.allSessions.splice(idx, 1, temp);
       this.saveSession();
-
-      const sentenceIds = temp.sentences.map(item => item.id);
-      this.saveLearnedSentences(sentenceIds);
+      this.saveLearnedSentences(temp.sentences);
       this.clearActiveSession();
     }
   },

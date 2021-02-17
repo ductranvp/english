@@ -16,14 +16,14 @@ export default {
   data() {
     return {
       choices: [
-        { label: "Learn 5 sentences", type: SessionType.LEARN, value: 5 },
+        { label: "Học 5 câu mới", type: SessionType.LEARN, value: 5 },
         {
-          label: "Review 25 sentences",
+          label: "Ôn tập 25 câu",
           type: SessionType.REVIEW,
           value: 25
         },
         {
-          label: "Review 50 sentences",
+          label: "Ôn tập 50 câu",
           type: SessionType.REVIEW,
           value: 50
         }

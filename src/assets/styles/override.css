@@ -21,10 +21,6 @@ button:focus {
     display: unset;
 }
 
-[v-cloak] {
-    display: none;
-}
-
 .el-tooltip__popper {
     line-height: 1.25rem;
 }
@@ -35,6 +31,10 @@ button:focus {
     margin:0;
 }
 
-.el-card__body {
-    padding: 0.5rem;
+.el-card__header, .el-card__body {
+    padding: 0.75rem;
+}
+
+.el-card {
+    border: 1px solid #DCDFE6
 }

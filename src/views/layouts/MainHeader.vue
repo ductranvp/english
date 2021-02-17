@@ -6,7 +6,7 @@
       @click="pushRouteName('Home')"
     >
       <i class="el-icon-s-home"></i>
-      <span>Home</span>
+      <span>Trang Chủ</span>
     </el-button>
     <el-button
       :size="btnSize"
@@ -14,7 +14,7 @@
       @click="pushRouteName('History')"
     >
       <i class="el-icon-time"></i>
-      <span>History</span>
+      <span>Lịch Sử</span>
     </el-button>
     <el-button
       :size="btnSize"
@@ -22,7 +22,7 @@
       @click="pushRouteName('Option')"
     >
       <i class="el-icon-setting"></i>
-      <span>Option</span>
+      <span>Tùy Chọn</span>
     </el-button>
   </div>
 </template>

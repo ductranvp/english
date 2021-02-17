@@ -4,13 +4,13 @@
       <el-alert type="warning" :closable="false" center>
         <el-row type="flex" class="w-full font-bold text-sm">
           <el-col :span="8">
-            <div>Morning 0.6x</div>
+            <div>Sáng 0.6x</div>
           </el-col>
           <el-col :span="8">
-            <div>Afternoon 1x</div>
+            <div>Trưa 1x</div>
           </el-col>
           <el-col :span="8">
-            <div>Evening 0.6x</div>
+            <div>Tối 0.6x</div>
           </el-col>
         </el-row>
       </el-alert>
@@ -24,7 +24,7 @@
               :disabled="isPlaying"
             >
               <i class="el-icon-video-play"></i>
-              <span>Play 1x</span>
+              <span>Nghe 1x</span>
             </el-button>
           </el-col>
           <el-col :span="11" :offset="2">
@@ -35,7 +35,7 @@
               @click="play(speed.SLOW)"
             >
               <i class="el-icon-video-play"></i>
-              <span>Play 0.6x</span>
+              <span>Nghe 0.6x</span>
             </el-button>
           </el-col>
         </el-row>
@@ -45,10 +45,17 @@
             <div>{{ item.vi }}</div>
           </el-card>
         </el-row>
+        <el-row class="pb-3">
+          <el-alert type="warning" :closable="false">
+            <div class="w-full text-sm text-center">
+              Hãy nghe đủ ít nhất 3 lần/ngày
+            </div>
+          </el-alert>
+        </el-row>
         <el-row type="flex">
           <el-button class="w-full" type="success" @click="complete">
             <i class="el-icon-check"></i>
-            <span>Complete</span>
+            <span>Đã học xong</span>
           </el-button>
         </el-row>
       </div>
