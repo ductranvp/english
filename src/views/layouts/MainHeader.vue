@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center">
+  <div>
     <el-button
       :size="btnSize"
       :type="getButtonType('Home')"
@@ -16,14 +16,14 @@
       <i class="el-icon-time"></i>
       <span>Lịch Sử</span>
     </el-button>
-    <el-button
-      :size="btnSize"
-      :type="getButtonType('Option')"
-      @click="pushRouteName('Option')"
-    >
-      <i class="el-icon-setting"></i>
-      <span>Tùy Chọn</span>
-    </el-button>
+    <!--    <el-button-->
+    <!--      :size="btnSize"-->
+    <!--      :type="getButtonType('Option')"-->
+    <!--      @click="pushRouteName('Option')"-->
+    <!--    >-->
+    <!--      <i class="el-icon-setting"></i>-->
+    <!--      <span class="hidden-xs-only">Tùy Chọn</span>-->
+    <!--    </el-button>-->
   </div>
 </template>
 
@@ -32,7 +32,7 @@ export default {
   name: "MainHeader",
   data() {
     return {
-      btnSize: "small"
+      btnSize: ""
     };
   },
   methods: {

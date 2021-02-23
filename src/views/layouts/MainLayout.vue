@@ -1,7 +1,9 @@
 <template>
   <el-container>
-    <el-header height="auto" class="bg-gray-800">
-      <MainHeader />
+    <el-header height="auto">
+      <AppResponsive>
+        <MainHeader />
+      </AppResponsive>
     </el-header>
     <el-main>
       <router-view />
@@ -11,10 +13,11 @@
 
 <script>
 import MainHeader from "./MainHeader";
+import AppResponsive from "@/components/AppResponsive";
 
 export default {
   name: "MainLayout",
-  components: { MainHeader }
+  components: { AppResponsive, MainHeader }
 };
 </script>
 

@@ -2914,6 +2914,11 @@ cross-spawn@^7.0.0:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
+crunker@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/crunker/-/crunker-0.4.0.tgz#0dc5bf825970f2cf44f7c938595e1a2370065c8e"
+  integrity sha512-aZqw1T/qzU3dwUv+UW72nWHpS894X+lGxfhjiaM7aKvJsVo0hHTjKkr52nap4Oq8ydcTloh4oPPYH6S2lvNL7w==
+
 crypto-browserify@^3.11.0:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.12.0.tgz#396cf9f3137f03e4b8e532c58f698254e00f80ec"

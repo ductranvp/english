@@ -7,17 +7,15 @@ import { getLocalStorage } from "@/utils/app.utils";
 export const mixin = {
   filters,
   data() {
-    // eslint-disable-next-line no-unused-vars
-    const exampleSession = {
-      id: null,
-      type: null, // LEARN, REVIEW
-      date: null,
-      sentences: []
-    };
     return {
       learnedSentences: getLocalStorage(StorageKey.LEARNED_SENTENCES, []),
       activeSession: getLocalStorage(StorageKey.ACTIVE_SESSION, {}),
-      allSessions: getLocalStorage(StorageKey.ALL_SESSIONS, [])
+      allSessions: getLocalStorage(StorageKey.ALL_SESSIONS, []),
+      config: {
+        sentencePerLesson: 5,
+        sentenceRepeat: 5,
+        paddingTime: 0.2 // seconds
+      }
     };
   },
   methods

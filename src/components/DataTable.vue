@@ -1,7 +1,7 @@
 <template>
   <div v-loading="isLoading">
     <el-table
-      style="width: 100%"
+      class="w-full"
       :highlight-current-row="highlightCurrentRow"
       :default-expand-all="defaultExpandAll"
       :data="tableData"
@@ -9,6 +9,8 @@
       :default-sort="defaultSort"
       :fit="true"
       :row-class-name="rowClass"
+      :border="border"
+      :show-header="showHeader"
     >
       <slot name="expand">
         <!-- action definitions here -->
@@ -34,7 +36,7 @@
     <el-row
       v-if="showPagination"
       type="flex"
-      justify="end"
+      justify="center"
       style="margin-top: 0.75rem"
     >
       <el-pagination
@@ -46,7 +48,7 @@
         :page-sizes="tableConfig.pageSizes"
         :page-size="tableConfig.pageSize"
         :total="data.length"
-        layout="total, prev, pager, next"
+        :layout="layout"
       />
     </el-row>
   </div>
@@ -56,6 +58,14 @@
 export default {
   name: "DataTable",
   props: {
+    showHeader: {
+      type: Boolean,
+      default: true
+    },
+    layout: {
+      default: "total, prev, pager, next"
+    },
+    border: Boolean,
     highlightCurrentRow: Boolean,
     showIndex: Boolean,
     defaultExpandAll: Boolean,
@@ -90,7 +100,7 @@ export default {
         totalElements: 0,
         currentPage: 1,
         pageCount: 4,
-        pageSize: 20,
+        pageSize: 10,
         pageSizes: [10, 20, 30, 50, 100]
       }
     };

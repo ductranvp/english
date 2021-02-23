@@ -1,10 +1,14 @@
 <template>
-  <p>Option</p>
+  <AppResponsive>
+    <p>Option</p>
+  </AppResponsive>
 </template>
 
 <script>
+import AppResponsive from "@/components/AppResponsive";
 export default {
-  name: "Option"
+  name: "Option",
+  components: { AppResponsive }
 };
 </script>
 

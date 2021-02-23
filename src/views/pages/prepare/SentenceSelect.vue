@@ -1,76 +1,75 @@
 <template>
-  <div class="w-full h-full" v-loading="isLoading">
-    <el-row type="flex" justify="center">
-      <el-col :span="24" :sm="16" :md="12">
-        <el-collapse v-model="activeCategory" @change="handleChange" accordion>
-          <el-collapse-item
-            v-for="cat in categories"
-            :key="cat.id"
-            :name="cat.id"
+  <div>
+    <el-collapse v-model="activeCategory" accordion>
+      <el-collapse-item v-for="cat in categories" :key="cat.id" :name="cat.id">
+        <template slot="title">
+          <el-row
+            type="flex"
+            align="middle"
+            justify="space-between"
+            class="w-full text-sm"
           >
-            <template slot="title">
-              <el-row
-                type="flex"
-                align="middle"
-                justify="space-between"
-                class="w-full"
-              >
-                <el-col class="pl-3">
-                  <span>{{ cat.name }}</span>
-                </el-col>
-                <div class="w-10 mr-3">
-                  <el-tag size="mini" class="w-full text-center">
-                    {{ cat.sentences.length }}
-                  </el-tag>
-                </div>
-              </el-row>
-            </template>
-            <div v-if="cat.id === activeCategory" v-loading="cat.isLoading">
-              <el-row
-                type="flex"
-                class="p-2"
-                align="middle"
-                justify="space-between"
-                v-for="el in cat.sentences"
-                :key="el.id"
-              >
-                <el-tooltip>
-                  <div slot="content">
-                    <div>{{ el.en }}</div>
-                    <div>{{ el.vi }}</div>
-                  </div>
-                  <el-checkbox
-                    v-model="el.checked"
-                    :disabled="selected.length >= maxSelect && !el.checked"
-                    @change="handleCheck"
-                  >
-                    <span>{{ el.en | truncate(80) }}</span>
-                  </el-checkbox>
-                </el-tooltip>
-                <el-button size="mini" @click="skip(el)">Đã biết</el-button>
-              </el-row>
+            <el-col class="pl-3 text-warning">
+              <span>{{ cat.name }}</span>
+            </el-col>
+            <div class="w-10 mr-3">
+              <el-tag size="mini" class="w-full text-center">
+                {{ cat.sentences.length }}
+              </el-tag>
             </div>
-          </el-collapse-item>
-        </el-collapse>
-      </el-col>
-    </el-row>
+          </el-row>
+        </template>
+        <div>
+          <DataTable
+            :data="cat.sentences"
+            layout="prev, pager, next"
+            :show-header="false"
+          >
+            <el-table-column prop="en">
+              <div slot-scope="{ row }">
+                <el-row type="flex" align="middle">
+                  <div class="w-full overflow-ellipsis overflow-hidden">
+                    <el-checkbox
+                      :disabled="
+                        selected.length >= config.sentencePerLesson &&
+                          !row.checked
+                      "
+                      v-model="row.checked"
+                      @change="handleCheck"
+                      class="w-full"
+                    >
+                      <span>{{ row.en }}</span>
+                    </el-checkbox>
+                  </div>
+                  <div class="text-right">
+                    <el-button @click="skip(row)" size="mini">
+                      <span>Đã biết</span>
+                    </el-button>
+                  </div>
+                </el-row>
+              </div>
+            </el-table-column>
+          </DataTable>
+        </div>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 
 <script>
-import { sleep, sortArray } from "@/utils/app.utils";
+import { sortArray } from "@/utils/app.utils";
 import Sentence from "@/mixin/data/sentence";
 import Category from "@/mixin/data/category";
 import { LearnStatus } from "@/constants/learn.constants";
+import DataTable from "@/components/DataTable";
 
 export default {
   name: "SentenceSelect",
+  components: { DataTable },
   data() {
     return {
-      isLoading: false,
       activeCategory: null,
-      categories: [],
-      maxSelect: this.$route.params?.quantity || 10
+      categories: []
     };
   },
   computed: {
@@ -87,8 +86,6 @@ export default {
   },
   methods: {
     async parseData() {
-      this.isLoading = true;
-
       const sentences = await Promise.all(
         Sentence.map(item => {
           const done = !!this.learnedSentences.find(el => el === item.id);
@@ -118,7 +115,6 @@ export default {
           return item;
         })
       );
-      this.isLoading = false;
     },
     handleCheck() {
       this.$emit("change", this.selected);
@@ -131,17 +127,21 @@ export default {
       });
       this.$emit("change", this.selected);
     },
-    skip(sentence) {
+    async skip(sentence) {
+      await this.$confirm(
+        "<div>Bạn chắc đã biết câu này chứ?</div>" +
+          "<div class='font-bold'>" +
+          sentence.en +
+          "</div>",
+        "Xác nhận",
+        {
+          cancelButtonText: "Hủy",
+          confirmButtonText: "OK",
+          dangerouslyUseHTMLString: true
+        }
+      );
       this.saveLearnedSentences([sentence.id]);
       this.parseData();
-    },
-    async handleChange(val) {
-      if (val) {
-        const cat = this.categories.find(item => item.id === val);
-        cat.isLoading = true;
-        await sleep(500);
-        cat.isLoading = false;
-      }
     }
   }
 };

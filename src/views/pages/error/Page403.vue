@@ -31,7 +31,7 @@
           Access denied!
         </div>
         <div class="text-center padding-10-0">
-          <el-button type="primary" @click="pushRouteName('Home')">
+          <el-button plain type="primary" @click="pushRouteName('Home')">
             <i class="el-icon-arrow-left"></i>
             <span>Back to home page</span>
           </el-button>

@@ -6,7 +6,7 @@ NProgress.configure({ showSpinner: false }); // NProgress Configuration
 
 router.beforeEach(async (to, from, next) => {
   /* Start progress bar */
-  NProgress.start();
+  // NProgress.start();
 
   /* Set page title */
   document.title = to.meta.title;
@@ -21,7 +21,7 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach(() => {
   // finish progress bar
-  setTimeout(() => {
-    NProgress.done();
-  }, 200);
+  // setTimeout(() => {
+  //   NProgress.done();
+  // }, 200);
 });
