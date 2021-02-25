@@ -7,8 +7,13 @@ import { SessionStatus } from "@/constants/learn.constants";
 import { Speed } from "@/constants/app.constants";
 
 const learnMethods = {
+  clearAllHistory() {
+    this.learnedSentences = [];
+    this.activeSession = {};
+    this.allSessions = [];
+    localStorage.clear();
+  },
   saveLearnedSentences(sentenceIds) {
-    console.log(sentenceIds);
     this.learnedSentences = this.learnedSentences.concat(sentenceIds);
     this.learnedSentences = [...new Set(this.learnedSentences)];
     setLocalStorage(StorageKey.LEARNED_SENTENCES, this.learnedSentences);

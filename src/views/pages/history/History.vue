@@ -1,5 +1,8 @@
 <template>
   <AppResponsive>
+    <el-row class="text-right">
+      <el-button @click="clearHistory">Xóa toàn bộ lịch sử</el-button>
+    </el-row>
     <DataTable :data="allSessions" show-index show-pagination>
       <el-table-column label="Ngày" sortable prop="date">
         <template slot-scope="{ row }">
@@ -74,6 +77,14 @@ export default {
     resume(row) {
       this.setActiveSession(row);
       this.pushRouteName("Learn");
+    },
+    async clearHistory() {
+      try {
+        await this.$confirm("Thao tác này không thể khôi phục lại", "Xác nhận");
+        this.clearAllHistory();
+      } catch (e) {
+        //
+      }
     }
   }
 };

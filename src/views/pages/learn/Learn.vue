@@ -12,6 +12,9 @@
             <el-divider class="m-0 mt-2 mb-2"></el-divider>
           </el-row>
         </div>
+        <div v-if="error">
+          {{ error }}
+        </div>
       </AppResponsive>
     </el-main>
     <el-footer height="auto">
@@ -30,29 +33,37 @@
         <el-row :gutter="12" type="flex" class="m-0">
           <el-col>
             <el-button
+              :loading="isLoading"
               plain
               type="primary"
               class="w-full"
               @click="play(speed.SLOW)"
             >
-              <i class="el-icon-video-play"></i>
+              <i v-if="!isLoading" class="el-icon-video-play"></i>
               <span>Nghe 0.6x</span>
             </el-button>
           </el-col>
           <el-col>
             <el-button
+              :loading="isLoading"
               type="primary"
               plain
               class="w-full"
               @click="play(speed.NORMAL)"
             >
-              <i class="el-icon-video-play"></i>
+              <i v-if="!isLoading" class="el-icon-video-play"></i>
               <span>Nghe 1.0x</span>
             </el-button>
           </el-col>
           <el-col>
-            <el-button plain class="w-full" type="success" @click="complete">
-              <i class="el-icon-check"></i>
+            <el-button
+              :loading="isLoading"
+              plain
+              class="w-full"
+              type="success"
+              @click="complete"
+            >
+              <i v-if="!isLoading" class="el-icon-check"></i>
               <span>Đã xong</span>
             </el-button>
           </el-col>
@@ -79,9 +90,11 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       speed: Speed,
       srcAudio: null,
-      cached: {}
+      cached: {},
+      error: null
     };
   },
   computed: {
@@ -96,19 +109,33 @@ export default {
       audio.currentTime = 0;
     },
     async play(speed) {
-      if (this.cached[speed]) {
-        this.resetTime();
-        this.srcAudio = this.cached[speed];
-        return;
+      try {
+        this.isLoading = true;
+        if (this.cached[speed]) {
+          this.resetTime();
+          this.srcAudio = this.cached[speed];
+          return;
+        }
+        const sentenceIds = this.activeSession.sentences;
+        this.srcAudio = await AudioUtils.getConcatenatedAudioFiles(
+          sentenceIds,
+          speed,
+          this.config.paddingTime,
+          this.config.sentenceRepeat
+        );
+        this.cached[speed] = this.srcAudio;
+        this.$nextTick(() => {
+          setTimeout(() => {
+            document.getElementById("audio").play();
+          }, 1000);
+        });
+      } catch (e) {
+        this.$message.success(e.message);
+        this.error = e;
+      } finally {
+        this.$message.success("xxx");
+        this.isLoading = false;
       }
-      const sentenceIds = this.activeSession.sentences;
-      this.srcAudio = await AudioUtils.getConcatenatedAudioFiles(
-        sentenceIds,
-        speed,
-        this.config.paddingTime,
-        this.config.sentenceRepeat
-      );
-      this.cached[speed] = this.srcAudio;
     },
     async complete() {
       await this.$confirm("Bạn đã nghe đủ 3 lần trong ngày chưa?", "Xác nhận", {

@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import Crunker from "crunker";
+import Crunker from "./crunker";
 // eslint-disable-next-line no-unused-vars
 import { Message } from "element-ui";
 import { Speed } from "@/constants/app.constants";
@@ -15,9 +15,6 @@ function preparedBuffer(crunker, buffers, padTime = 0, repeatCount = 5) {
 
 async function getConcatenatedAudioFiles(fileIds, speed, padTime, repeatCount) {
   let crunker = new Crunker();
-  crunker.notSupported(val => {
-    console.log(val);
-  });
 
   const filePaths = [];
   fileIds.forEach(id => {
