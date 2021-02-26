@@ -133,7 +133,6 @@ export default {
         this.$message.success(e.message);
         this.error = e;
       } finally {
-        this.$message.success("xxx");
         this.isLoading = false;
       }
     },

@@ -4,30 +4,36 @@
       <el-button @click="clearHistory">Xóa toàn bộ lịch sử</el-button>
     </el-row>
     <DataTable :data="allSessions" show-index show-pagination>
-      <el-table-column label="Ngày" sortable prop="date">
+      <el-table-column label="T.Gian" sortable prop="date">
         <template slot-scope="{ row }">
-          <div>{{ row.date | format("HH:mm") }}</div>
-          <div>{{ row.date | format("DD/MM/YY") }}</div>
+          <el-tooltip>
+            <div slot="content">
+              <div>{{ row.date | format("HH:mm DD/MM/YY") }}</div>
+            </div>
+            <div class="line-clamp-1 break-normal">
+              {{ row.date | fromNow }}
+            </div>
+          </el-tooltip>
         </template>
       </el-table-column>
-      <el-table-column label="Trạng thái">
-        <template slot-scope="{ row }">
-          <el-tag
-            size="medium"
-            type="warning"
-            v-if="row.status === sessionStatus.IN_PROGRESS"
-          >
-            Chưa xong
-          </el-tag>
-          <el-tag
-            size="medium"
-            type="success"
-            v-if="row.status === sessionStatus.COMPLETED"
-          >
-            Đã xong
-          </el-tag>
-        </template>
-      </el-table-column>
+      <!--      <el-table-column label="T.Thái">-->
+      <!--        <template slot-scope="{ row }">-->
+      <!--          <el-tag-->
+      <!--            size="medium"-->
+      <!--            type="warning"-->
+      <!--            v-if="row.status === sessionStatus.IN_PROGRESS"-->
+      <!--          >-->
+      <!--            Chưa xong-->
+      <!--          </el-tag>-->
+      <!--          <el-tag-->
+      <!--            size="medium"-->
+      <!--            type="success"-->
+      <!--            v-if="row.status === sessionStatus.COMPLETED"-->
+      <!--          >-->
+      <!--            Đã xong-->
+      <!--          </el-tag>-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
       <el-table-column label="Số câu">
         <template slot-scope="{ row }">
           <span>{{ row.sentences.length }}</span>

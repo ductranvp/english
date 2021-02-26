@@ -37,19 +37,19 @@ export default {
           label: "Học 5 câu mới",
           type: SessionType.LEARN,
           value: 5
-        },
-        {
-          icon: "el-icon-refresh-left",
-          label: "Ôn tập 25 câu",
-          type: SessionType.REVIEW,
-          value: 25
-        },
-        {
-          icon: "el-icon-refresh-left",
-          label: "Ôn tập 50 câu",
-          type: SessionType.REVIEW,
-          value: 50
         }
+        // {
+        //   icon: "el-icon-refresh-left",
+        //   label: "Ôn tập 25 câu",
+        //   type: SessionType.REVIEW,
+        //   value: 25
+        // },
+        // {
+        //   icon: "el-icon-refresh-left",
+        //   label: "Ôn tập 50 câu",
+        //   type: SessionType.REVIEW,
+        //   value: 50
+        // }
       ]
     };
   },

@@ -2,6 +2,17 @@
   <el-container>
     <el-main>
       <AppResponsive>
+        <div class="pb-3">
+          <el-alert :closable="false" center>
+            <div class="text-center">
+              <span class="text-base">
+                Chọn {{ config.sentencePerLesson }} câu bất kỳ từ các danh mục
+                phía dưới sau đó bấm
+              </span>
+              <span class="font-bold text-primary text-base"> Bắt đầu</span>
+            </div>
+          </el-alert>
+        </div>
         <SentenceSelect @change="change" ref="select" />
       </AppResponsive>
     </el-main>
@@ -11,8 +22,15 @@
           <el-col>
             <el-tooltip :disabled="!selectedSentences.length">
               <div slot="content">
-                <div v-for="item in selectedSentences" :key="item.id">
-                  <span>{{ item.en }}</span>
+                <div
+                  v-for="(item, index) in selectedSentences"
+                  :key="item.id"
+                  class="pb-2"
+                >
+                  <div>{{ index + 1 }}. {{ item.en }}</div>
+                  <div>
+                    <em>{{ item.vi }}</em>
+                  </div>
                 </div>
               </div>
               <el-button size="medium">

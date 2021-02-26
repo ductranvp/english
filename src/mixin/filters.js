@@ -34,6 +34,10 @@ const filters = {
 
   format(value, format) {
     return dayjs(value).format(format);
+  },
+
+  fromNow(value) {
+    return dayjs(value).fromNow();
   }
 };
 export default filters;

@@ -39,3 +39,8 @@ button:focus {
 .el-card {
     border: 1px solid #DCDFE6
 }
+
+.el-message-box{
+    width: auto;
+    min-width: 360px;
+}

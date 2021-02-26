@@ -9,12 +9,12 @@
             justify="space-between"
             class="w-full text-sm"
           >
-            <el-col class="pl-3 text-warning">
+            <el-col class="pl-3 font-bold">
               <span>{{ cat.name }}</span>
             </el-col>
-            <div class="w-10 mr-3">
+            <div class="w-20 mr-3">
               <el-tag size="mini" class="w-full text-center">
-                {{ cat.sentences.length }}
+                {{ cat.sentences.length }} câu
               </el-tag>
             </div>
           </el-row>
@@ -36,7 +36,7 @@
                       "
                       v-model="row.checked"
                       @change="handleCheck"
-                      class="w-full"
+                      class="w-full h-full  pt-2 pb-2"
                     >
                       <span>{{ row.en }}</span>
                     </el-checkbox>
@@ -147,4 +147,9 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+.el-table--small td,
+.el-table--small th {
+  padding: 0;
+}
+</style>

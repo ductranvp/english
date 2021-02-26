@@ -8,6 +8,7 @@ import store from "./store";
 import "./assets/styles/index.scss";
 import "./router/guard";
 import "@/mixin";
+import "./utils/dayjs";
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI, { locale });
