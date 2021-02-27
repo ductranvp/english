@@ -10,7 +10,7 @@
 
 .el-header, .el-footer{
     padding: 0;
-    background-color: #eee;
+    background-color: #dddddd;
 }
 
 button:focus {

@@ -9,7 +9,7 @@
             justify="space-between"
             class="w-full text-sm"
           >
-            <el-col class="pl-3 font-bold">
+            <el-col class="pl-3 font-semibold">
               <span>{{ cat.name }}</span>
             </el-col>
             <div class="w-20 mr-3">
@@ -36,7 +36,7 @@
                       "
                       v-model="row.checked"
                       @change="handleCheck"
-                      class="w-full h-full  pt-2 pb-2"
+                      class="w-full h-full"
                     >
                       <span>{{ row.en }}</span>
                     </el-checkbox>
@@ -147,9 +147,4 @@ export default {
 };
 </script>
 
-<style>
-.el-table--small td,
-.el-table--small th {
-  padding: 0;
-}
-</style>
+<style></style>

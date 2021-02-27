@@ -5,7 +5,7 @@
         <div class="pb-3">
           <el-alert :closable="false" center>
             <div class="text-center">
-              <span class="text-base">
+              <span class="text-sm">
                 Chọn {{ config.sentencePerLesson }} câu bất kỳ từ các danh mục
                 phía dưới sau đó bấm
               </span>
@@ -33,12 +33,12 @@
                   </div>
                 </div>
               </div>
-              <el-button size="medium">
+              <el-button size="">
                 <span>Đã chọn: </span>
                 <span>{{ selectedSentences.length }} câu</span>
               </el-button>
             </el-tooltip>
-            <el-button @click="clearSelect" size="medium">
+            <el-button @click="clearSelect" size="">
               <i class="el-icon-delete"></i>
             </el-button>
           </el-col>
@@ -46,7 +46,7 @@
             :disabled="selectedSentences.length < config.sentencePerLesson"
             @click="next"
             type="primary"
-            size="medium"
+            size=""
           >
             <span>Bắt đầu</span>
           </el-button>

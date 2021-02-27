@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <el-row type="flex">
     <el-button
       :size="btnSize"
+      :class="btnClass"
       :type="getButtonType('Home')"
       @click="pushRouteName('Home')"
     >
@@ -10,21 +11,23 @@
     </el-button>
     <el-button
       :size="btnSize"
+      :class="btnClass"
       :type="getButtonType('History')"
       @click="pushRouteName('History')"
     >
       <i class="el-icon-time"></i>
       <span>Lịch Sử</span>
     </el-button>
-    <!--    <el-button-->
-    <!--      :size="btnSize"-->
-    <!--      :type="getButtonType('Option')"-->
-    <!--      @click="pushRouteName('Option')"-->
-    <!--    >-->
-    <!--      <i class="el-icon-setting"></i>-->
-    <!--      <span class="hidden-xs-only">Tùy Chọn</span>-->
-    <!--    </el-button>-->
-  </div>
+    <el-button
+      :size="btnSize"
+      :class="btnClass"
+      :type="getButtonType('Option')"
+      @click="pushRouteName('Option')"
+    >
+      <i class="el-icon-setting"></i>
+      <span>Tùy Chọn</span>
+    </el-button>
+  </el-row>
 </template>
 
 <script>
@@ -32,7 +35,8 @@ export default {
   name: "MainHeader",
   data() {
     return {
-      btnSize: ""
+      btnSize: "",
+      btnClass: ""
     };
   },
   methods: {
